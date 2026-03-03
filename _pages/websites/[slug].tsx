@@ -1,11 +1,7 @@
 import fs from "fs";
 import path from "path";
 import WebsiteHeader from "@/components/ui/WebsiteHeader";
-import { SliceZone } from "@prismicio/react";
-import { createClient } from "@/prismicio";
-import TextSlice from "@/slices/TextSlice";
-import ImagesSlice from "@/slices/ImagesSlice";
-import VideoSlide from "@/slices/VideoSlide";
+import { WebsiteType } from "@/types/Website";
 
 function getWebsites(): WebsiteType[] {
   const filePath = path.join(process.cwd(), "public", "websites.json");

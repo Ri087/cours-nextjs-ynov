@@ -2,10 +2,9 @@ import fs from "fs";
 import path from "path";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import Title from "@/components/ui/Title";
-import Video from "@/components/ui/Video";
 import Website from "@/components/ui/Website";
 import WebsiteHeader from "@/components/ui/WebsiteHeader";
-import { createClient } from "@/prismicio";
+import { WebsiteType } from "@/types/Website";
 
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), "public", "websites.json");
@@ -50,7 +49,11 @@ export default function HomePage({ websites }: HomePageType) {
           Highlight
         </Title>
 
-        <Video id="414785329" />
+        <figure className="rounded-lg overflow-hidden w-full max-w-280 mt-12">
+          <video controls className="w-full">
+            <source src="/highlight.mp4" type="video/mp4" />
+          </video>
+        </figure>
       </div>
     </main>
   );
