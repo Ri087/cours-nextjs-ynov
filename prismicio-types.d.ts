@@ -291,9 +291,9 @@ export type MenuDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
 type WebsiteDocumentDataSlicesSlice =
-  | IntroTextSlice
-  | TwoColumnContentSplitSlice
-  | VideoFeatureCardSlice;
+  | ImagesSliceSlice
+  | TextSliceSlice
+  | VideoSlideSlice;
 
 /**
  * Content for Site web documents
@@ -471,165 +471,165 @@ export type AllDocumentTypes =
   | WebsitesDocument;
 
 /**
- * Primary content in *Texte → Title and Description → Primary*
+ * Item in *ImagesSlice → Default → Primary → Images*
  */
-export interface IntroTextSliceTitleAndDescriptionPrimary {
+export interface ImagesSliceSliceDefaultPrimaryImagesItem {
   /**
-   * Title field in *Texte → Title and Description → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: intro_text.title_and_description.primary.title
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  title: prismic.RichTextField;
-
-  /**
-   * Description field in *Texte → Title and Description → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: intro_text.title_and_description.primary.description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  description: prismic.RichTextField;
-}
-
-/**
- * Title and Description variation for Texte Slice
- *
- * - **API ID**: `title_and_description`
- * - **Description**: Displays a heading followed by a description or explanatory paragraph.
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type IntroTextSliceTitleAndDescription = prismic.SharedSliceVariation<
-  "title_and_description",
-  Simplify<IntroTextSliceTitleAndDescriptionPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Texte*
- */
-type IntroTextSliceVariation = IntroTextSliceTitleAndDescription;
-
-/**
- * Texte Shared Slice
- *
- * - **API ID**: `intro_text`
- * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type IntroTextSlice = prismic.SharedSlice<
-  "intro_text",
-  IntroTextSliceVariation
->;
-
-/**
- * Item in *Images → Default → Primary → Images*
- */
-export interface TwoColumnContentSplitSliceDefaultPrimaryImagesItem {
-  /**
-   * Image field in *Images → Default → Primary → Images*
+   * Image field in *ImagesSlice → Default → Primary → Images*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: two_column_content_split.default.primary.images[].image
+   * - **API ID Path**: images_slice.default.primary.images[].image
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   image: prismic.ImageField<never>;
 }
 
 /**
- * Primary content in *Images → Default → Primary*
+ * Primary content in *ImagesSlice → Default → Primary*
  */
-export interface TwoColumnContentSplitSliceDefaultPrimary {
+export interface ImagesSliceSliceDefaultPrimary {
   /**
-   * Images field in *Images → Default → Primary*
+   * Images field in *ImagesSlice → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: two_column_content_split.default.primary.images[]
+   * - **API ID Path**: images_slice.default.primary.images[]
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   images: prismic.GroupField<
-    Simplify<TwoColumnContentSplitSliceDefaultPrimaryImagesItem>
+    Simplify<ImagesSliceSliceDefaultPrimaryImagesItem>
   >;
 }
 
 /**
- * Default variation for Images Slice
+ * Default variation for ImagesSlice Slice
  *
  * - **API ID**: `default`
- * - **Description**: Standard two-column layout. Supports variations in background color and different content types for each column (text, list, images, info blocks).
+ * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type TwoColumnContentSplitSliceDefault = prismic.SharedSliceVariation<
+export type ImagesSliceSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<TwoColumnContentSplitSliceDefaultPrimary>,
+  Simplify<ImagesSliceSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *Images*
+ * Slice variation for *ImagesSlice*
  */
-type TwoColumnContentSplitSliceVariation = TwoColumnContentSplitSliceDefault;
+type ImagesSliceSliceVariation = ImagesSliceSliceDefault;
 
 /**
- * Images Shared Slice
+ * ImagesSlice Shared Slice
  *
- * - **API ID**: `two_column_content_split`
- * - **Description**: *None*
+ * - **API ID**: `images_slice`
+ * - **Description**: ImagesSlice
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type TwoColumnContentSplitSlice = prismic.SharedSlice<
-  "two_column_content_split",
-  TwoColumnContentSplitSliceVariation
+export type ImagesSliceSlice = prismic.SharedSlice<
+  "images_slice",
+  ImagesSliceSliceVariation
 >;
 
 /**
- * Primary content in *Video → Default → Primary*
+ * Primary content in *TextSlice → Default → Primary*
  */
-export interface VideoFeatureCardSliceDefaultPrimary {
+export interface TextSliceSliceDefaultPrimary {
   /**
-   * Video field in *Video → Default → Primary*
+   * Titre field in *TextSlice → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: video_feature_card.default.primary.videoID
+   * - **API ID Path**: text_slice.default.primary.title
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  videoID: prismic.KeyTextField;
+  title: prismic.KeyTextField;
+
+  /**
+   * Texte field in *TextSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_slice.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
 }
 
 /**
- * Default variation for Video Slice
+ * Default variation for TextSlice Slice
  *
  * - **API ID**: `default`
- * - **Description**: Displays embedded video (Vimeo, YouTube, etc.), a large title with optional branding/logo, description, author, and call-to-action. Optional social/interaction icons.
+ * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type VideoFeatureCardSliceDefault = prismic.SharedSliceVariation<
+export type TextSliceSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<VideoFeatureCardSliceDefaultPrimary>,
+  Simplify<TextSliceSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *Video*
+ * Slice variation for *TextSlice*
  */
-type VideoFeatureCardSliceVariation = VideoFeatureCardSliceDefault;
+type TextSliceSliceVariation = TextSliceSliceDefault;
 
 /**
- * Video Shared Slice
+ * TextSlice Shared Slice
  *
- * - **API ID**: `video_feature_card`
- * - **Description**: *None*
+ * - **API ID**: `text_slice`
+ * - **Description**: TextSlice
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type VideoFeatureCardSlice = prismic.SharedSlice<
-  "video_feature_card",
-  VideoFeatureCardSliceVariation
+export type TextSliceSlice = prismic.SharedSlice<
+  "text_slice",
+  TextSliceSliceVariation
+>;
+
+/**
+ * Primary content in *VideoSlide → Default → Primary*
+ */
+export interface VideoSlideSliceDefaultPrimary {
+  /**
+   * Video field in *VideoSlide → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_slide.default.primary.video
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  video: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for VideoSlide Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoSlideSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoSlideSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *VideoSlide*
+ */
+type VideoSlideSliceVariation = VideoSlideSliceDefault;
+
+/**
+ * VideoSlide Shared Slice
+ *
+ * - **API ID**: `video_slide`
+ * - **Description**: VideoSlide
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoSlideSlice = prismic.SharedSlice<
+  "video_slide",
+  VideoSlideSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -671,19 +671,19 @@ declare module "@prismicio/client" {
       WebsitesDocumentData,
       WebsitesDocumentDataSlicesSlice,
       AllDocumentTypes,
-      IntroTextSlice,
-      IntroTextSliceTitleAndDescriptionPrimary,
-      IntroTextSliceVariation,
-      IntroTextSliceTitleAndDescription,
-      TwoColumnContentSplitSlice,
-      TwoColumnContentSplitSliceDefaultPrimaryImagesItem,
-      TwoColumnContentSplitSliceDefaultPrimary,
-      TwoColumnContentSplitSliceVariation,
-      TwoColumnContentSplitSliceDefault,
-      VideoFeatureCardSlice,
-      VideoFeatureCardSliceDefaultPrimary,
-      VideoFeatureCardSliceVariation,
-      VideoFeatureCardSliceDefault,
+      ImagesSliceSlice,
+      ImagesSliceSliceDefaultPrimaryImagesItem,
+      ImagesSliceSliceDefaultPrimary,
+      ImagesSliceSliceVariation,
+      ImagesSliceSliceDefault,
+      TextSliceSlice,
+      TextSliceSliceDefaultPrimary,
+      TextSliceSliceVariation,
+      TextSliceSliceDefault,
+      VideoSlideSlice,
+      VideoSlideSliceDefaultPrimary,
+      VideoSlideSliceVariation,
+      VideoSlideSliceDefault,
     };
   }
 }

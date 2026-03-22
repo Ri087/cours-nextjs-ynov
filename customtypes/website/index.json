@@ -43,13 +43,13 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "intro_text": {
+            "images_slice": {
               "type": "SharedSlice"
             },
-            "two_column_content_split": {
+            "text_slice": {
               "type": "SharedSlice"
             },
-            "video_feature_card": {
+            "video_slide": {
               "type": "SharedSlice"
             }
           }

@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  intro_text: dynamic(() => import("./Texte")),
-  two_column_content_split: dynamic(() => import("./Images")),
-  video_feature_card: dynamic(() => import("./Video")),
+  images_slice: dynamic(() => import("./ImagesSlice")),
+  text_slice: dynamic(() => import("./TextSlice")),
+  video_slide: dynamic(() => import("./VideoSlide")),
 };

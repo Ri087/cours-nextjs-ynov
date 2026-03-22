@@ -1,17 +1,18 @@
 {
+  "id": "video_slide",
   "type": "SharedSlice",
-  "id": "video_feature_card",
-  "name": "Video",
+  "name": "VideoSlide",
+  "description": "VideoSlide",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "description": "Displays embedded video (Vimeo, YouTube, etc.), a large title with optional branding/logo, description, author, and call-to-action. Optional social/interaction icons.",
-      "version": "initial",
-      "imageUrl": "",
       "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
       "primary": {
-        "videoID": {
+        "video": {
           "type": "Text",
           "config": {
             "label": "Video",

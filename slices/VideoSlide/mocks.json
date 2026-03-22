@@ -3,9 +3,9 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"videoID": {
+			"video": {
 				"__TYPE__": "FieldContent",
-				"value": "range",
+				"value": "flew",
 				"type": "Text"
 			}
 		},

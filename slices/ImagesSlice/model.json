@@ -1,15 +1,16 @@
 {
+  "id": "images_slice",
   "type": "SharedSlice",
-  "id": "two_column_content_split",
-  "name": "Images",
+  "name": "ImagesSlice",
+  "description": "ImagesSlice",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "description": "Standard two-column layout. Supports variations in background color and different content types for each column (text, list, images, info blocks).",
-      "version": "initial",
-      "imageUrl": "",
       "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
       "primary": {
         "images": {
           "type": "Group",

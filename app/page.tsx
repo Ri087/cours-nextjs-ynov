@@ -9,7 +9,9 @@ export default async function HomePage() {
   const client = createClient();
   const websites = await client.getAllByType("website", {
     limit: 4,
-    orderings: [{ field: "document.first_publication_date", direction: "desc" }],
+    orderings: [
+      { field: "document.first_publication_date", direction: "desc" },
+    ],
   });
 
   return (
@@ -43,7 +45,7 @@ export default async function HomePage() {
           Highlight
         </Title>
 
-        <Video id="X1_20eBd8Zg" />
+        <Video id="414785329" />
       </div>
     </main>
   );

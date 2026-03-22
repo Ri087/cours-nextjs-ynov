@@ -34,8 +34,8 @@ export default function Video({ id }: VideoType) {
 
   return (
     <iframe
-      className="rounded-lg overflow-hidden w-full max-w-280 mt-12 aspect-video"
-      src={`https://www.youtube.com/embed/${id}`}
+      className="rounded-lg overflow-hidden w-full mt-12 aspect-video"
+      src={`https://player.vimeo.com/video/${id}`}
       allow="encrypted-media"
     />
   );
