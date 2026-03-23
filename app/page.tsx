@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import Title from "@/components/ui/Title";
 import Video from "@/components/ui/Video";
@@ -7,18 +5,9 @@ import Website from "@/components/ui/Website";
 import WebsiteHeader from "@/components/ui/WebsiteHeader";
 import { createClient } from "@/prismicio";
 
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "public", "websites.json");
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  const websites = JSON.parse(fileContent);
-  return { props: { websites } };
-}
-
-type HomePageType = {
-  websites: WebsiteType[];
-};
-
-export default function HomePage({ websites }: HomePageType) {
+export default async function HomePage() {
+  const client = createClient();
+  const websites = await client.getAllByType("website");
   return (
     <main>
       <WebsiteHeader website={websites[0]} />

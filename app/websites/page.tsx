@@ -1,21 +1,11 @@
-import fs from "fs";
-import path from "path";
 import { Button } from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
 import Website from "@/components/ui/Website";
-import { WebsiteType } from "@/types/Website";
+import { createClient } from "@/prismicio";
 
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "public", "websites.json");
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  const websites = JSON.parse(fileContent);
-  return { props: { websites } };
-}
-
-type WebsitesPageType = {
-  websites: WebsiteType[];
-};
-export default function WebsitesPage({ websites }: WebsitesPageType) {
+export default async function WebsitesPage() {
+  const client = createClient();
+  const websites = await client.getAllByType("website");
   return (
     <main className="px-6 py-12">
       <Title tag="h1" topLine="Découvrez de nouveaux">
