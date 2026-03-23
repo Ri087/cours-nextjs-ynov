@@ -1,40 +1,18 @@
-import fs from "fs";
-import path from "path";
 import WebsiteHeader from "@/components/ui/WebsiteHeader";
-import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
-import TextSlice from "@/slices/TextSlice";
-import ImagesSlice from "@/slices/ImagesSlice";
-import VideoSlide from "@/slices/VideoSlide";
+import { notFound } from "next/navigation";
 
-function getWebsites(): WebsiteType[] {
-  const filePath = path.join(process.cwd(), "public", "websites.json");
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  return JSON.parse(fileContent);
-}
+export default async function WebsitePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const client = createClient();
+  const website = await client
+    .getByUID("website", slug)
+    .catch(() => notFound());
 
-export async function getStaticPaths() {
-  const websites = getWebsites();
-  const paths = websites.map((w: WebsiteType) => ({
-    params: { slug: w.slug },
-  }));
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const websites = getWebsites();
-  const currentWebsite = websites.find((w: WebsiteType) => w.slug == slug);
-  if (!currentWebsite) return { notFound: true };
-
-  return { props: { website: currentWebsite } };
-}
-
-type WebsitePageType = {
-  website: WebsiteType;
-};
-
-export default function WebsitePage({ website }: WebsitePageType) {
   return (
     <main>
       <WebsiteHeader website={website} />
