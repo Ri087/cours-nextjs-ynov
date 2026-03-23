@@ -17,7 +17,7 @@ export default async function WebsitesPage() {
         ))}
       </div>
       <footer className="pt-12 flex justify-center">
-        <Button onClick={() => {}}>Charger plus de sites web</Button>
+        <Button>Charger plus de sites web</Button>
       </footer>
     </main>
   );
